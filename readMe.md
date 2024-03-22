@@ -1,0 +1,1 @@
+this is a project i am doing in my free time. i want to try and recreate the boid algorithm.
