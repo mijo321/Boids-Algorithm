@@ -1,3 +1,18 @@
+
+/*
+https://en.wikipedia.org/wiki/Boids#Model_details
+https://eater.net/boids
+
+
+
+TODO LIST
+    *   Trace paths
+    *   Add a predator that the boids try to avoid that scatters the flock if it gets too close.
+    *   Add a strong wind or current to see what effect it has on the flock.
+    * 
+*/
+
+
 class Vector {
     constructor(x, y) {
         this.x = x;
@@ -78,6 +93,8 @@ class Boid {
         this.acceleration.multiply(0);
     }
 
+
+    // steer to avoid crowding local flockmates
     separation(boids) {
         let desiredSeparation = 100; // desired seperation
         let steer = new Vector(0, 0);
@@ -106,8 +123,9 @@ class Boid {
         this.acceleration.add(steer);
     }
 
+    // steer towards the average direction of local flock
     alignment(boids) {
-        let neighbordist = 50; // change range of average direction
+        let neighbordist = 50; // change how far that flock distance is
         let sum = new Vector(0, 0);
         let count = 0;
         for (let i = 0; i < boids.length; i++) {
@@ -131,9 +149,9 @@ class Boid {
         }
     }
 
-
+    // steer towards average center of mass of local flock
     cohesion(boids) {
-        let neighbordist = 50; // change how far they wil be atracted to other boids
+        let neighbordist = 50; // change how far that flock distance is
         let sum = new Vector(0, 0);
         let count = 0;
         for (let i = 0; i < boids.length; i++) {
@@ -196,6 +214,8 @@ function animate() {
 }
 
 window.onload = function() {animate(); }
+
+console.log("<3")
 
 
 
